@@ -1,0 +1,191 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11.5pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvcolor{black}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+\usepackage{multicol}
+%\setlength{\hintscolumnwidth}{2cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{N}{A}
+\title{R\'{e}sum\'{e}}                               % optional, remove / comment the line if not wanted
+\address{street}{city, state zip}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[mobile]{(999)~999~9999}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+%\phone[fixed]{+2~(345)~678~901}
+%\phone[fax]{+3~(456)~789~012}
+%\social[linkedin]{ehjohnson}                        % optional, remove / comment the line if not wanted
+\email{na@gmail.com}                               % optional, remove / comment the line if not wanted
+%\homepage{www.johndoe.com}                         % optional, remove / comment the line if not wanted
+%\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+%\social[github]{jdoe}                              % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+\newcounter{countitems}
+\newcounter{nextitemizecount}
+\newcommand{\setupcountitems}{%
+	  \stepcounter{nextitemizecount}%
+	    \setcounter{countitems}{0}%
+	      \preto\item{\stepcounter{countitems}}%
+	      }
+	      \makeatletter
+	      \newcommand{\computecountitems}{%
+		        \edef\@currentlabel{\number\c@countitems}%
+			  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+		  }
+		  \newcommand{\nextitemizecount}{%
+			    \getrefnumber{countitems@\number\c@nextitemizecount}%
+		    }
+		    \newcommand{\previtemizecount}{%
+			      \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+		      }
+		      \makeatother
+		      \newenvironment{AutoMultiColItemize}{%
+			      \ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
+				      \setupcountitems\begin{itemize}}%
+				      {\end{itemize}%
+		      \unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
+
+\newcommand{\cvdoublecolumn}[2]{%
+  \cvitem[0.75em]{}{%
+    \begin{minipage}[t]{\listdoubleitemcolumnwidth}#1\end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+    }%
+}
+
+\newcommand{\cvreference}[7]{%
+    \textbf{#1}\newline% Name
+    \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+    \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+    \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+    \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+    \ifthenelse{\equal{#6}{}}{}{\emailsymbol\emaillink{#6}\newline}%
+    \ifthenelse{\equal{#7}{}}{}{\phonesymbol#7}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+
+%\section{Thesis}
+%\cvitem{title}{\emph{Constraints on Models for the Higgs Boson with Exotic Spin and Parity}}
+%\cvitem{advisor}{Wade Fisher}
+
+\section{Experience}
+%\subsection{Research}
+\cventry{Jun. 2014 \,--\, Present}{Help Desk Tech/Application Support}{Full Time}{Lansing Community College}{}{
+%As a postdoc, I joined the ATLAS collaboration at CERN. The focus of my work was performing research and contributing to the MSU physics department's technical documentation wiki.
+After being hired for a full time position I continued my previous Help Desk Technican duties
+in addition to serving as a member on new and ongoing project initiatives.
+%Detailed achievements:%
+\begin{itemize}%
+%\setlength\multicolsep{2pt}
+\item Worked with a small team and vendors to build, test, and implement LCC's ticketing and project/enterprise service management platform from the ground up.
+\begin{itemize}%
+\item Transitioned the ITS Department from an outdated ticketing system to a new ticketing and enterprise service management platform solution.
+\item Met with other departments to discuss their needs and desired outcomes both in service management and project management in an attempt to centralize service/project requests.
+\item Create demonstrations, training materials and offer training sessions to allow a smooth transition into the ticketing system.
+\item Automated routine tasks utilizing basic Python scripts in conjunction with the ticketing system API.
+\item Administrate/maintain/update the service catalog, ticketing system, reports, and automation rules based on feedback from the departments that use the system.
+\end{itemize}
+\item Regularly attend conferences and webinars and participate in community forums to stay up to date with enterprise service management best practices and procedures.
+%\item Gained advanced experience supporting educational technology systems and applications by assisting student and staff.
+%\item Aided colleagues in finding solutions to technical issues with software and services.
+%\item Assisted student welcome week, represented the Help Desk for faculty enrichment days, and gave presentations on services provided.
+\item Attend campus events which focus on better serving the LCC Community.
+\end{itemize}}
+%
+%
+\cventry{Oct. 2011 \,--\, Jun. 2014}{Help Desk Tech/Application Support}{Part Time}{Lansing Community College}{}{
+As a Help Desk Technician I provided technical support and resolution to students, faculty, and staff.
+%contributing to the continued operation of the D0 experiment through service tasks.
+%While I was a graduate student, I was a member of a research team at Fermilab.
+\begin{itemize}%
+\item Gained advanced experience supporting educational technology systems and applications by assisting students and staff.
+\item Aided colleagues in finding solutions to technical issues with software and services.
+\item Assisted with Student Welcome Week, represented the Help Desk for Faculty Enrichment Days, and gave presentations on services provided.
+\item Facilitated departmental cross-communication to assist in troubleshooting hardware and software issues.
+\item Assisted in testing new procedures and systems prior to deployment and provided documentation of feedback and potential issues.
+%\item Respond to/resolve submitted requests in the areas of ERP Security, ERP Student, Course
+%Management System, Identity Management System, and other areas as time permits.
+\item Trained new Help Desk employees.
+%\item Participated in collaborative software development under version control:
+%\begin{itemize}
+%\item Added new functionality to our custom statistical analysis software package.
+%\item Wrote scripts to automate tasks associated with running the analysis.
+\end{itemize}}
+%\item Administrated approximately ten machines running Scientific Linux:
+%\begin{itemize}
+%\item Installed two desktop nodes and one RAID array for use in a computer cluster accessible by over 350 people 24/7.
+%\item Performed hardware/software troubleshooting and maintenance both on- and off-site.
+%\end{itemize}
+%\item Analyzed large, complex data sets:
+%\begin{itemize}
+%\item Tested data models against collected data using a statistics-based approach.
+%\item Manipulated data into complex data formats for reading and plotting.
+%\item Leveraged machine learning techniques to search for patterns.
+%\item Produced plots to investigate hypotheses and accurately portray results.
+%\item Performed signal-to-noise ratio optimization in data.
+%\end{itemize}
+%\item Presented my analysis progress and results to wide audiences at conferences and weekly meetings.
+%\item Participated in rotating shifts monitoring the safety and performance of the D0 detector.
+%\item Published my thesis research in a peer-reviewed scientific journal while serving as corresponding author on behalf of the collaboration.
+%\end{itemize}}
+
+
+\section{Technical skills}
+\cvitem{}{TeamDynamix, Desire2Learn, Banner, Concourse, Active Directory, IdM}
+\cvitem{}{Python, PowerShell, Atom}
+%\cvitem{}{, }
+% how to write Latex: \LaTeX
+
+\section{Education}
+\cventry{2003\,--\,2007}{B.S. {\em Computer Information Systems}}{Aquinas College}{Grand Rapids}{}{}  % arguments 3 to 6 can be left empty
+%\cventry{2008\,--\,2010}{M.S. {\em Physics}}{Michigan State University}{East Lansing}{}{}
+%\cventry{2003\,--\,2007}{B.S. {\em Physics}}{Michigan State University}{East Lansing}{}{Honors College}
+
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\clearpage
+%-----       references       ---------------------------------------------------------
+%\renewcommand{\title}[1]{\title{}}
+%\include{Additional}
+\include{CoverLetter}
+\end{document}
+
+
+%% end of file `template.tex'.
